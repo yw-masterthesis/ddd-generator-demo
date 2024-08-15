@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE domain [
+    <!ELEMENT domain (context+)>
+    <!ATTLIST domain name ID #REQUIRED>
+    <!ELEMENT context (entity|value-object|enum|upstream-context)*>
+    <!ATTLIST context name ID #REQUIRED>
+    <!ELEMENT entity (identity)>
+    <!ATTLIST entity name ID #REQUIRED>
+    <!ELEMENT identity EMPTY>
+    <!ATTLIST identity name ID #IMPLIED>
+    <!ATTLIST identity ref IDREF #IMPLIED>
+    <!ELEMENT enum (value+)>
+    <!ATTLIST enum name ID #REQUIRED>
+    <!ELEMENT value (#PCDATA)>
+    <!ELEMENT upstream-context EMPTY>
+    <!ATTLIST upstream-context ref IDREF #REQUIRED>
+]>
+<domain name="Library">
+    <context name="Catalogue">
+        <entity name="Book">
+            <identity name="ISBN" />
+        </entity>
+        <entity name="BookInstance">
+            <identity name="BookId" />
+        </entity>
+        <enum name="BookType">
+            <value>Restricted</value>
+            <value>Circulating</value>
+        </enum>
+    </context>
+</domain>
+<!-- <context name="Lending">
+    <upstream-context ref="Catalogue" />
+    <entity name="AvailableBook">
+        <identity ref="BookId" />
+    </entity>
+    <entity name="BookOnHold">
+        <identity ref="BookId" />
+    </entity>
+    <entity name="CheckedOutBook">
+        <identity ref="BookId" />
+    </entity>
+</context> -->
