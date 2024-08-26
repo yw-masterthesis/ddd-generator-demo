@@ -1,43 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE domain [
-    <!ELEMENT domain (context+)>
-    <!ATTLIST domain name ID #REQUIRED>
-    <!ELEMENT context (entity|value-object|enum|upstream-context)*>
-    <!ATTLIST context name ID #REQUIRED>
-    <!ELEMENT entity (identity)>
-    <!ATTLIST entity name ID #REQUIRED>
-    <!ELEMENT identity EMPTY>
-    <!ATTLIST identity name ID #IMPLIED>
-    <!ATTLIST identity ref IDREF #IMPLIED>
-    <!ELEMENT enum (value+)>
-    <!ATTLIST enum name ID #REQUIRED>
-    <!ELEMENT value (#PCDATA)>
-    <!ELEMENT upstream-context EMPTY>
-    <!ATTLIST upstream-context ref IDREF #REQUIRED>
-]>
+<!DOCTYPE domain SYSTEM "domain-model.dtd">
 <domain name="Library">
     <context name="Catalogue">
-        <entity name="Book">
-            <identity name="ISBN" />
-        </entity>
-        <entity name="BookInstance">
-            <identity name="BookId" />
-        </entity>
-        <enum name="BookType">
-            <value>Restricted</value>
-            <value>Circulating</value>
-        </enum>
+        <aggregate name="Book">
+            <identity name="ISBN"></identity>
+            <value-object name="Title"></value-object>
+            <value-object name="Author"></value-object>
+        </aggregate>
+        <aggregate name="BookInstance">
+            <identity name="BookId"></identity>
+        </aggregate>
+        <enum name="BookType"></enum>
+        <service name="CatalogueService"></service>
+        <event name="BookInstanceAddedToCatalogue"></event>
     </context>
 </domain>
-<!-- <context name="Lending">
-    <upstream-context ref="Catalogue" />
-    <entity name="AvailableBook">
-        <identity ref="BookId" />
-    </entity>
-    <entity name="BookOnHold">
-        <identity ref="BookId" />
-    </entity>
-    <entity name="CheckedOutBook">
-        <identity ref="BookId" />
-    </entity>
-</context> -->
