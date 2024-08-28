@@ -1,4 +1,4 @@
-package com.example.demo.lending;
+package com.example.library.lending;
 
 import org.springframework.boot.test.context.SpringBootTest;
 

@@ -1,4 +1,4 @@
-package com.example.demo.commons.aggregates;
+package com.example.library.commons.aggregates;
 
 import lombok.Value;
 

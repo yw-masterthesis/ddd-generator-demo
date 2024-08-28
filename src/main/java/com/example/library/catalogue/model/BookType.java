@@ -1,4 +1,4 @@
-package com.example.demo.catalogue.model;
+package com.example.library.catalogue.model;
 
 public enum BookType {
     Restricted, Circulating

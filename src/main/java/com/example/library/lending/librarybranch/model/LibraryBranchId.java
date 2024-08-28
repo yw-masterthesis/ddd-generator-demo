@@ -1,4 +1,4 @@
-package com.example.demo.lending.librarybranch.model;
+package com.example.library.lending.librarybranch.model;
 
 import lombok.NonNull;
 import lombok.Value;

@@ -1,9 +1,9 @@
-package com.example.demo.lending.book.model;
+package com.example.library.lending.book.model;
 
-import com.example.demo.catalogue.model.BookId;
-import com.example.demo.catalogue.model.BookType;
-import com.example.demo.commons.aggregates.Version;
-import com.example.demo.lending.librarybranch.model.LibraryBranchId;
+import com.example.library.catalogue.model.BookId;
+import com.example.library.catalogue.model.BookType;
+import com.example.library.commons.aggregates.Version;
+import com.example.library.lending.librarybranch.model.LibraryBranchId;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
