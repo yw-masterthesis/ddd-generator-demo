@@ -2,8 +2,10 @@
 <!ATTLIST domain name ID #REQUIRED>
 <!ELEMENT context (aggregate|entity|value-object|enum|service|event)*>
 <!ATTLIST context name ID #REQUIRED>
-<!ELEMENT aggregate (identity?, entity*, value-object*)>
+<!ELEMENT aggregate (root, identity?, entity*, value-object*)>
 <!ATTLIST aggregate name ID #REQUIRED>
+<!ELEMENT root EMPTY>
+<!ATTLIST root name ID #REQUIRED>
 <!ELEMENT identity EMPTY>
 <!ATTLIST identity name ID #IMPLIED>
 <!ATTLIST identity ref IDREF #IMPLIED>

@@ -12,19 +12,13 @@ import org.junit.jupiter.api.Test;
 @SpringBootTest
 public class LibraryDomainTests {
 
-    private static final String PACKAGE_STRUCTURE = "<base>.<domain>..<context>";
     private static final String BASE_PACKAGE = "com.example";
 
     private static final String DOMAIN_NAME = "Library";
 
-    private static final String DOMAIN_PACKAGE_NAME = DOMAIN_NAME.toLowerCase();
+    private static final String DOMAIN_PACKAGE_NAME = "library";
 
-    private static final String DOMAIN_PACKAGE = (PACKAGE_STRUCTURE.split("<domain>", 2)[0]
-            + ".<domain>")
-            .replace("<base>",
-                    BASE_PACKAGE)
-            .replace("<domain>",
-                    DOMAIN_PACKAGE_NAME);
+    private static final String DOMAIN_PACKAGE = "com.example.library";
 
     /**
      * There should be a package/module representing the domain
