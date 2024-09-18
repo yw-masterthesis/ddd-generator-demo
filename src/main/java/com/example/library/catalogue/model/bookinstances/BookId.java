@@ -1,4 +1,4 @@
-package com.example.library.catalogue.model;
+package com.example.library.catalogue.model.bookinstances;
 
 import lombok.NonNull;
 import lombok.Value;

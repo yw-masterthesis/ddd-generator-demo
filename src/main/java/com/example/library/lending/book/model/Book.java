@@ -1,7 +1,7 @@
 package com.example.library.lending.book.model;
 
-import com.example.library.catalogue.model.BookId;
 import com.example.library.catalogue.model.BookType;
+import com.example.library.catalogue.model.bookinstances.BookId;
 import com.example.library.commons.aggregates.Version;
 
 public interface Book {

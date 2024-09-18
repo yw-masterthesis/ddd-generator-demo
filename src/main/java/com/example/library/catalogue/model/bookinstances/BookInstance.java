@@ -1,4 +1,4 @@
-package com.example.library.catalogue.model;
+package com.example.library.catalogue.model.bookinstances;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,9 +7,13 @@ import lombok.Value;
 
 import java.util.UUID;
 
+import com.example.library.catalogue.model.BookType;
+import com.example.library.catalogue.model.books.Book;
+import com.example.library.catalogue.model.books.ISBN;
+
 @Value
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-class BookInstance {
+public class BookInstance {
 
     @NonNull
     ISBN bookIsbn;

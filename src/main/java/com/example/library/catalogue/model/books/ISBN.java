@@ -1,10 +1,10 @@
-package com.example.library.catalogue.model;
+package com.example.library.catalogue.model.books;
 
 import lombok.NonNull;
 import lombok.Value;
 
 @Value
-class ISBN {
+public class ISBN {
 
     private static final String VERY_SIMPLE_ISBN_CHECK = "^\\d{9}[\\d|X]$";
 

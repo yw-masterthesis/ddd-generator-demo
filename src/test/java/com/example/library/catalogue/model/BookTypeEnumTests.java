@@ -1,4 +1,4 @@
-package com.example.library.catalogue;
+package com.example.library.catalogue.model;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,23 +13,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-class BookEntityTests {
+class BookTypeValueObjectTests {
 
         private static final String BASE_PACKAGE = "com.example";
         private static final String DOMAIN_LAYER_PACKAGE_NAME = "model";
 
         private static final String DOMAIN_NAME = "Library";
         private static final String CONTEXT_NAME = "Catalogue";
-        private static final String AGGREGATE_NAME = "";
-        private static final String ENTITY_NAME = "Book";
+        
+
+        private static final String ENUM_NAME = "BookType";
 
         private static final String DOMAIN_PACKAGE_NAME = "library";
         private static final String CONTEXT_PACKAGE_NAME = "catalogue";
-        private static final String AGGREGATE_PACKAGE_NAME = "";
+        
 
         private static final String DOMAIN_PACKAGE = "com.example.library";
-        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue";
-        private static final String AGGREGATE_PACKAGE = "com.example.library.catalogue";
+        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue.model";
+        
 
         /**
          * There should be a type representing the 
@@ -40,26 +41,26 @@ class BookEntityTests {
          */
 
         @Test
-        void moduleShouldContainClassWithEntitiesName() {
+        void moduleShouldContainClassWithEnumsName() {
                 // Import all classes from the base package
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 // Check if any class has the given name
                 boolean classExists = importedClasses.stream()
-                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME));
+                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME));
 
                 // Assert that the class exists
                 assertThat(classExists)
-                                .as("Check if a class named '%s' exists", ENTITY_NAME)
+                                .as("Check if a class named '%s' exists", ENUM_NAME)
                                 .isTrue();
         }
 
         @Test
-        void entityShouldResideInDomainLayer() {
+        void enumShouldResideInDomainLayer() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(".." + DOMAIN_LAYER_PACKAGE_NAME + "..");
@@ -68,15 +69,17 @@ class BookEntityTests {
         }
 
         @Test
-        void entityShouldResideInBoundedContext() {
+        void enumShouldResideInBoundedContext() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(ENUM_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(CONTEXT_PACKAGE + "..");
 
                 rule.check(importedClasses);
         }
+
+        
 }

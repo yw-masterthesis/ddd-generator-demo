@@ -1,5 +1,5 @@
 {
   "basePackage": "com.example",
-  "packageStructure": "<base>.<domain>.<context>",
+  "packageStructure": "<base>.<domain>.<context>.<layer>.<aggregate>",
   "domainLayerName": "model"
 }

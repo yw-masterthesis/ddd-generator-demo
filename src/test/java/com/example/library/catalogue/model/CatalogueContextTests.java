@@ -1,4 +1,4 @@
-package com.example.library.catalogue;
+package com.example.library.catalogue.model;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,7 +24,7 @@ public class CatalogueContextTests {
         private static final String CONTEXT_PACKAGE_NAME = "catalogue";
 
         private static final String DOMAIN_PACKAGE = "com.example.library";
-        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue";
+        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue.model";
 
         /**
          * There should be a package/module representing the bounded context

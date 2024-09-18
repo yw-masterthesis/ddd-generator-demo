@@ -1,4 +1,4 @@
-package com.example.library.catalogue.model;
+package com.example.library.catalogue.model.books;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,7 +9,7 @@ import lombok.Value;
 @Value
 @EqualsAndHashCode(of = "bookIsbn")
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
-class Book {
+public class Book {
 
     @NonNull
     private ISBN bookIsbn;

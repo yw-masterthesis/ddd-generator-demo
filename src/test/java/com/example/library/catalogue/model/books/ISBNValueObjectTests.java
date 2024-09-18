@@ -1,4 +1,4 @@
-package com.example.library.catalogue;
+package com.example.library.catalogue.model.books;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,23 +13,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-class BookInstanceEntityTests {
+class ISBNValueObjectTests {
 
         private static final String BASE_PACKAGE = "com.example";
         private static final String DOMAIN_LAYER_PACKAGE_NAME = "model";
 
         private static final String DOMAIN_NAME = "Library";
         private static final String CONTEXT_NAME = "Catalogue";
-        private static final String AGGREGATE_NAME = "";
-        private static final String ENTITY_NAME = "BookInstance";
+        
+        private static final String AGGREGATE_NAME = "Books";
+        
+
+        private static final String VALUE_OBJECT_NAME = "ISBN";
 
         private static final String DOMAIN_PACKAGE_NAME = "library";
         private static final String CONTEXT_PACKAGE_NAME = "catalogue";
-        private static final String AGGREGATE_PACKAGE_NAME = "";
+        
+        private static final String AGGREGATE_PACKAGE_NAME = "books";
+        
 
         private static final String DOMAIN_PACKAGE = "com.example.library";
-        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue";
-        private static final String AGGREGATE_PACKAGE = "com.example.library.catalogue";
+        private static final String CONTEXT_PACKAGE = "com.example.library.catalogue.model";
+        
+        private static final String AGGREGATE_PACKAGE = "com.example.library.catalogue.model.books";
+        
 
         /**
          * There should be a type representing the 
@@ -40,26 +47,26 @@ class BookInstanceEntityTests {
          */
 
         @Test
-        void moduleShouldContainClassWithEntitiesName() {
+        void moduleShouldContainClassWithValueObjectsName() {
                 // Import all classes from the base package
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 // Check if any class has the given name
                 boolean classExists = importedClasses.stream()
-                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME));
+                                .anyMatch(javaClass -> javaClass.getSimpleName().equals(VALUE_OBJECT_NAME));
 
                 // Assert that the class exists
                 assertThat(classExists)
-                                .as("Check if a class named '%s' exists", ENTITY_NAME)
+                                .as("Check if a class named '%s' exists", VALUE_OBJECT_NAME)
                                 .isTrue();
         }
 
         @Test
-        void entityShouldResideInDomainLayer() {
+        void valueObjectShouldResideInDomainLayer() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(VALUE_OBJECT_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(".." + DOMAIN_LAYER_PACKAGE_NAME + "..");
@@ -68,15 +75,30 @@ class BookInstanceEntityTests {
         }
 
         @Test
-        void entityShouldResideInBoundedContext() {
+        void valueObjectShouldResideInBoundedContext() {
                 JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
 
                 JavaClass clazz = importedClasses.stream()
-                                .filter(javaClass -> javaClass.getSimpleName().equals(ENTITY_NAME)).findFirst().get();
+                                .filter(javaClass -> javaClass.getSimpleName().equals(VALUE_OBJECT_NAME)).findFirst().get();
 
                 ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
                                 .resideInAPackage(CONTEXT_PACKAGE + "..");
 
                 rule.check(importedClasses);
         }
+
+        
+        @Test
+        void valueObjectShouldResideInAggregate() {
+                JavaClasses importedClasses = new ClassFileImporter().importPackages(CONTEXT_PACKAGE);
+
+                JavaClass clazz = importedClasses.stream()
+                                .filter(javaClass -> javaClass.getSimpleName().equals(VALUE_OBJECT_NAME)).findFirst().get();
+
+                ArchRule rule = classes().that().haveFullyQualifiedName(clazz.getFullName()).should()
+                                .resideInAPackage(AGGREGATE_PACKAGE + "..");
+
+                rule.check(importedClasses);
+        }
+        
 }
